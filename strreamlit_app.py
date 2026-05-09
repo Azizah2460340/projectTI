@@ -408,7 +408,6 @@ if role == "pabrik":
     t1, t2, t3, t4 = st.tabs(["📊 Manajemen Stok", "🏭 Pesanan Makloon", "🛒 Order Stok Masuk", "📈 Analisis & Produksi"])
     
     with t1:
-        st.markdown('<div class="custom-card">', unsafe_allow_html=True)
         st.subheader("📋 Inventory Real-time")
         df_stok = get_df("SELECT id, nama, stok, stok_minimum, harga_jual FROM produk")
         if not df_stok.empty:
@@ -436,7 +435,6 @@ if role == "pabrik":
         st.markdown('</div>', unsafe_allow_html=True)
     
     with t2:
-        st.markdown('<div class="custom-card">', unsafe_allow_html=True)
         st.subheader("➕ Input Pesanan Makloon Baru")
         with st.form("add_makloon", clear_on_submit=True):
             col_a, col_b = st.columns(2)
@@ -515,7 +513,6 @@ if role == "pabrik":
         st.markdown('</div>', unsafe_allow_html=True)
     
     with t4:
-        st.markdown('<div class="custom-card">', unsafe_allow_html=True)
         st.subheader("📊 Dashboard Produksi")
         df_chart = get_df("SELECT nama, stok FROM produk")
         if not df_chart.empty:
