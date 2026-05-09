@@ -347,6 +347,8 @@ st.markdown("""
 with st.sidebar:
     st.markdown("## 🏭 MDMS")
     st.markdown(f"### 👤 {st.session_state.username.title()}")
+    
+    # KODE YANG DIUBAH: Menambahkan ### agar ukurannya membesar setara h3 (22px)
     st.markdown(f"### **Role: {st.session_state.role.title()}**")
     
     st.markdown("<br>", unsafe_allow_html=True)
