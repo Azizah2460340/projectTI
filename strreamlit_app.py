@@ -201,31 +201,165 @@ def get_df(query, params=()):
 
 init_db()
 
-# ==================== 3. SISTEM LOGIN ====================
+# ==================== 3. SISTEM LOGIN MODERN ====================
+
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
 
-if not st.session_state.authenticated:
-    # Bungkus login dalam card putih
-    
-    st.title("🏭 MDMS - CV Amal Mulia")
-    col_l1, col_l2, col_l3 = st.columns([1,2,1])
-    with col_l2:
-        with st.form("login_form"):
-            u = st.text_input("Username")
-            p = st.text_input("Password", type="password")
-            if st.form_submit_button("Masuk", use_container_width=True):
-                res = get_df("SELECT role FROM users WHERE username=? AND password=?", (u, p))
-                if not res.empty:
-                    st.session_state.authenticated = True
-                    st.session_state.username = u
-                    st.session_state.role = res.iloc[0]['role']
-                    st.rerun()
-                else:
-                    st.error("❌ Username atau password salah!")
-    st.markdown('</div>', unsafe_allow_html=True)
-    st.stop()
+# ==================== CSS LOGIN ====================
+st.markdown("""
+<style>
 
+/* Hilangkan header streamlit */
+header[data-testid="stHeader"]{
+    background: transparent;
+}
+
+/* Hilangkan menu pojok */
+#MainMenu {
+    visibility: hidden;
+}
+
+/* Background card login */
+.login-card {
+    background: rgba(255,255,255,0.93);
+    padding: 2rem;
+    border-radius: 30px;
+    max-width: 480px;
+    margin: auto;
+    margin-top: 3vh;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    backdrop-filter: blur(6px);
+}
+
+/* Judul */
+.login-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #18392b;
+    line-height: 1.2;
+    margin-top: 1rem;
+}
+
+/* Subtitle */
+.login-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 1.8rem;
+    font-size: 1rem;
+}
+
+/* Input */
+.stTextInput > div > div > input {
+    border-radius: 14px;
+    padding: 0.85rem;
+    border: 1px solid #d9d9d9;
+    background-color: rgba(255,255,255,0.95);
+}
+
+/* Button */
+.stButton > button {
+    width: 100%;
+    border-radius: 14px;
+    padding: 0.9rem;
+    border: none;
+    background: linear-gradient(120deg,#1e3c2c,#2e8b57);
+    color: white;
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(46,139,87,0.3);
+    color: white;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px){
+
+    .login-card{
+        padding:1.5rem;
+        margin-top:1vh;
+        border-radius:24px;
+    }
+
+    .login-title{
+        font-size:2rem;
+    }
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# ==================== HALAMAN LOGIN ====================
+if not st.session_state.authenticated:
+
+    st.markdown("""
+    <div class="login-card">
+    """, unsafe_allow_html=True)
+
+    # Ilustrasi login
+    st.image(
+        "https://cdn-icons-png.flaticon.com/512/6195/6195699.png",
+        use_container_width=True
+    )
+
+    # Judul
+    st.markdown("""
+    <div class="login-title">
+    🏭 MDMS <br>
+    CV Amal Mulia
+    </div>
+
+    <div class="login-subtitle">
+    Manufacturing & Distributor Management System
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Input username
+    username = st.text_input(
+        "Username",
+        placeholder="Masukkan username"
+    )
+
+    # Auto lowercase realtime
+    username = username.lower()
+
+    # Input password
+    password = st.text_input(
+        "Password",
+        type="password",
+        placeholder="Masukkan password"
+    )
+
+    # Tombol login
+    if st.button("Masuk"):
+
+        username = username.strip().lower()
+
+        # Validasi database
+        res = get_df(
+            "SELECT role FROM users WHERE LOWER(username)=? AND password=?",
+            (username, password)
+        )
+
+        if not res.empty:
+
+            st.session_state.authenticated = True
+            st.session_state.username = username
+            st.session_state.role = res.iloc[0]['role']
+
+            st.success("✅ Login berhasil")
+            st.rerun()
+
+        else:
+            st.error("❌ Username atau password salah!")
+
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    st.stop()
 # ==================== 4. SIDEBAR ====================
 with st.sidebar:
     st.markdown("### 🏭 MDMS")
