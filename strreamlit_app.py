@@ -276,7 +276,7 @@ st.markdown(f"## 👋 Selamat datang, {st.session_state.username}")
 tanggal = datetime.now().strftime('%A, %d %B %Y')
 st.markdown(f'''
     <span style="
-        background-color: #0c3f27; 
+        background-color: #2e8b57; 
         color: white; 
         padding: 6px 16px; 
         border-radius: 50px; 
