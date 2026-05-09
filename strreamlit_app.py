@@ -528,3 +528,4 @@ st.markdown("""
     © 2025 CV Amal Mulia - Manufacturing & Distribution System
 </div>
 """, unsafe_allow_html=True
+           )
