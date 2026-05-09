@@ -9,7 +9,7 @@ import base64
 st.set_page_config(page_title="MDMS - CV Amal Mulia", layout="wide", page_icon="🏭")
 
 # -------------------- FUNGSI UNTUK BACKGROUND GIF (BERGERAK) --------------------
-def set_background_gif(gif_url_or_path):
+def set_background_mp4(mp4_url_or_path):
     """
     Set background menggunakan GIF (bisa dari URL atau file lokal).
     Lalu tambahkan lapisan putih semi-transparan agar teks terbaca.
@@ -19,7 +19,7 @@ def set_background_gif(gif_url_or_path):
         bg_style = f"""
         <style>
         .stApp {{
-            background: url("{gif_url_or_path}") no-repeat center center fixed;
+            background: url("{mp4_url_or_path}") no-repeat center center fixed;
             background-size: cover;
         }}
         /* Overlay putih dengan opacity 85% agar teks jelas */
@@ -38,13 +38,13 @@ def set_background_gif(gif_url_or_path):
     else:
         # Jika file lokal, encode ke base64
         try:
-            with open(gif_url_or_path, "rb") as f:
+            with open(mp4_url_or_path, "rb") as f:
                 data = f.read()
             b64 = base64.b64encode(data).decode()
             bg_style = f"""
             <style>
             .stApp {{
-                background: url("data:image/gif;base64,{b64}") no-repeat center center fixed;
+                background: url("data:image/mp4;base64,{b64}") no-repeat center center fixed;
                 background-size: cover;
             }}
             .stApp::before {{
@@ -66,7 +66,7 @@ def set_background_gif(gif_url_or_path):
 # -------------------- GUNAKAN BACKGROUND GIF (GANTI DENGAN URL ATAU FILE ANDA) --------------------
 # Contoh: background dari GIPHY (ganti dengan URL GIF favorit Anda)
 BACKGROUND_GIF_URL = "https://1drv.ms/v/c/522DA33D8FA111F0/IQBzm10PeozgTqx2ZFx2rjfmATyDqMfJed4Eq5oktSpsj8M?e=qKuNcX"
-set_background_gif(BACKGROUND_GIF_URL)
+set_background_mp4(BACKGROUND_mp4_URL)
 
 # ==================== 1. CSS TAMBAHAN UNTUK CARD PUTIH ====================
 st.markdown("""
