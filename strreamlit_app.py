@@ -296,7 +296,7 @@ username = st.session_state.username
 
 if role == "pabrik":
     # Metric dalam card putih
-    st.markdown('<div class="main-card">', unsafe_allow_html=True)
+    
     col_m1, col_m2, col_m3, col_m4 = st.columns(4)
     total_stok = get_df("SELECT SUM(stok) as total FROM produk").iloc[0]['total'] or 0
     total_pesanan_makloon = get_df("SELECT SUM(jumlah) FROM pesanan WHERE jenis_pesanan='makloon' AND status='Proses Produksi'").iloc[0,0] or 0
