@@ -342,9 +342,9 @@ with st.sidebar:
     # MENAMBAHKAN SPACE/JARAK KOSONG
     st.markdown("<br><br>", unsafe_allow_html=True)
     
-if st.button("🚪 Logout", use_container_width=True):
-        st.session_state.authenticated = False
-        st.rerun()
+    if st.button("🚪 Logout", use_container_width=True):
+            st.session_state.authenticated = False
+            st.rerun()
         
 # Teks "Selamat datang" tanpa kotak
 st.markdown(f"## 👋 Selamat datang, {st.session_state.username}")
