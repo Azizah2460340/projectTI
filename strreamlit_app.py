@@ -324,9 +324,9 @@ with st.sidebar:
     st.markdown(f"### 👤 {st.session_state.username}")
     
     # Menggunakan teks tebal biasa (Paragraf) agar menjadi yang terkecil
-    st.markdown(f"**Role:** `{st.session_state.role.upper()}`")
+    st.markdown(f"###Role:### `{st.session_state.role.upper()}`")
     
-    if st.button("🚪 Logout", use_container_width=True):
+    if st.button(f"### 🚪 Logout", use_container_width=True):
         st.session_state.authenticated = False
         st.rerun()
         
