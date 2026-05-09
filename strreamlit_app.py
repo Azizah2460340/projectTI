@@ -300,8 +300,14 @@ st.markdown("""
         /* 4. Memaksa KHUSUS tombol di dalam sidebar (Logout) agar berwarna putih */
         [data-testid="stSidebar"] .stButton button {
             background-color: white !important;
-            color: #2e8b57 !important; 
             border: none !important; 
+        }
+        
+        /* Memaksa SEMUA jenis teks di dalam tombol (termasuk ###) menjadi warna hijau */
+        [data-testid="stSidebar"] .stButton button p,
+        [data-testid="stSidebar"] .stButton button h3,
+        [data-testid="stSidebar"] .stButton button div {
+            color: #2e8b57 !important;
         }
         
         /* 5. Mencegah tombol berubah warna hijau saat disentuh/ditekan */
@@ -309,9 +315,16 @@ st.markdown("""
         [data-testid="stSidebar"] .stButton button:active,
         [data-testid="stSidebar"] .stButton button:focus {
             background-color: #f8f9fa !important; 
-            color: #2e8b57 !important;
             border: none !important;
             box-shadow: none !important;
+        }
+        
+        /* Memastikan warna teks di dalam tombol tetap hijau saat disentuh/ditekan */
+        [data-testid="stSidebar"] .stButton button:hover p,
+        [data-testid="stSidebar"] .stButton button:hover h3,
+        [data-testid="stSidebar"] .stButton button:active p,
+        [data-testid="stSidebar"] .stButton button:active h3 {
+            color: #2e8b57 !important;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -325,6 +338,9 @@ with st.sidebar:
     
     # Menggunakan teks tebal biasa (Paragraf) agar menjadi yang terkecil
     st.markdown(f"### Role: `{st.session_state.role.upper()}`")
+    
+    # MENAMBAHKAN SPACE/JARAK KOSONG
+    st.markdown("<br><br>", unsafe_allow_html=True)
     
     if st.button(f"### 🚪 Logout", use_container_width=True):
         st.session_state.authenticated = False
