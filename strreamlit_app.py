@@ -203,72 +203,60 @@ init_db()
 
 # ==================== 3. SISTEM LOGIN ====================
 
+# ==================== 3. SISTEM LOGIN & REGISTRASI ====================
 if "authenticated" not in st.session_state:
     st.session_state.authenticated = False
 
 if not st.session_state.authenticated:
-    # Bungkus login dalam card putih
-    
     st.title("🏭 MDMS - CV Amal Mulia")
+    
+    # Tambahkan opsi pilih menu di login page
+    menu_login = st.radio("Pilih Menu", ["Masuk", "Daftar Akun"], horizontal=True)
+    
     col_l1, col_l2, col_l3 = st.columns([1,2,1])
+    
     with col_l2:
-        with st.form("login_form"):
-            u = st.text_input("Username")
-            p = st.text_input("Password", type="password")
-            if st.form_submit_button("Masuk", use_container_width=True):
-                res = get_df("SELECT role FROM users WHERE username=? AND password=?", (u, p))
-                if not res.empty:
-                    st.session_state.authenticated = True
-                    st.session_state.username = u
-                    st.session_state.role = res.iloc[0]['role']
-                    st.rerun()
-                else:
-                    st.error("❌ Username atau password salah!")
-    st.markdown('</div>', unsafe_allow_html=True)
-    st.stop()if "authenticated" not in st.session_state:
-    st.session_state.authenticated = False
+        if menu_login == "Masuk":
+            with st.form("login_form"):
+                st.subheader("🔑 Login")
+                u = st.text_input("Username")
+                p = st.text_input("Password", type="password")
+                if st.form_submit_button("Masuk", use_container_width=True):
+                    res = get_df("SELECT role FROM users WHERE username=? AND password=?", (u, p))
+                    if not res.empty:
+                        st.session_state.authenticated = True
+                        st.session_state.username = u
+                        st.session_state.role = res.iloc[0]['role']
+                        st.rerun()
+                    else:
+                        st.error("❌ Username atau password salah!")
+        
+        else:
+            with st.form("register_form"):
+                st.subheader("📝 Daftar Akun Baru")
+                new_u = st.text_input("Buat Username")
+                new_p = st.text_input("Buat Password", type="password")
+                # Anda bisa membatasi role apa saja yang boleh daftar mandiri
+                new_role = st.selectbox("Daftar sebagai", ["distributor", "klien"])
+                
+                st.info("Pendaftaran role 'pabrik' hanya bisa dilakukan oleh Admin.")
+                
+                if st.form_submit_button("Daftar Sekarang", use_container_width=True):
+                    if new_u and new_p:
+                        # Cek apakah username sudah ada
+                        cek_user = get_df("SELECT * FROM users WHERE username=?", (new_u,))
+                        if cek_user.empty:
+                            try:
+                                run_query("INSERT INTO users (username, password, role) VALUES (?,?,?)", 
+                                         (new_u, new_p, new_role))
+                                st.success("✅ Akun berhasil dibuat! Silakan pilih menu 'Masuk'.")
+                            except Exception as e:
+                                st.error(f"Gagal mendaftar: {e}")
+                        else:
+                            st.warning("⚠️ Username sudah digunakan, pilih nama lain.")
+                    else:
+                        st.error("❌ Semua kolom harus diisi!")
 
-if not st.session_state.authenticated:
-    # Bungkus login dalam card putih
-    
-    st.title("🏭 MDMS - CV Amal Mulia")
-    col_l1, col_l2, col_l3 = st.columns([1,2,1])
-    with col_l2:
-        with st.form("login_form"):
-            u = st.text_input("Username")
-            p = st.text_input("Password", type="password")
-            if st.form_submit_button("Masuk", use_container_width=True):
-                res = get_df("SELECT role FROM users WHERE username=? AND password=?", (u, p))
-                if not res.empty:
-                    st.session_state.authenticated = True
-                    st.session_state.username = u
-                    st.session_state.role = res.iloc[0]['role']
-                    st.rerun()
-                else:
-                    st.error("❌ Username atau password salah!")
-    st.markdown('</div>', unsafe_allow_html=True)
-    st.stop()if "authenticated" not in st.session_state:
-    st.session_state.authenticated = False
-
-if not st.session_state.authenticated:
-    # Bungkus login dalam card putih
-    
-    st.title("🏭 MDMS - CV Amal Mulia")
-    col_l1, col_l2, col_l3 = st.columns([1,2,1])
-    with col_l2:
-        with st.form("login_form"):
-            u = st.text_input("Username")
-            p = st.text_input("Password", type="password")
-            if st.form_submit_button("Masuk", use_container_width=True):
-                res = get_df("SELECT role FROM users WHERE username=? AND password=?", (u, p))
-                if not res.empty:
-                    st.session_state.authenticated = True
-                    st.session_state.username = u
-                    st.session_state.role = res.iloc[0]['role']
-                    st.rerun()
-                else:
-                    st.error("❌ Username atau password salah!")
-    st.markdown('</div>', unsafe_allow_html=True)
     st.stop()
 # ==================== 4. SIDEBAR ====================
 with st.sidebar:
