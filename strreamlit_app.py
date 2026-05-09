@@ -261,7 +261,6 @@ if not st.session_state.authenticated:
 
     st.stop()
 # ==================== 4. SIDEBAR ====================
-# Menyuntikkan CSS khusus untuk area sidebar
 st.markdown("""
     <style>
         /* 1. Mengubah warna latar sidebar menjadi hijau laut (#2e8b57) */
@@ -269,7 +268,7 @@ st.markdown("""
             background-color: #2e8b57;
         }
         
-        /* 2. Mengubah warna teks menjadi putih */
+        /* 2. Mengubah warna teks menjadi putih untuk semua level teks */
         [data-testid="stSidebar"] p, 
         [data-testid="stSidebar"] h1, 
         [data-testid="stSidebar"] h2, 
@@ -278,10 +277,24 @@ st.markdown("""
             color: white !important;
         }
 
-        /* 3. MENGUBAH UKURAN FONT teks biasa menjadi 15px */
+        /* 3. MENGATUR UKURAN FONT BERDASARKAN URUTAN (HIERARKI) */
+        
+        /* A. MDMS (h2) -> Paling Besar */
+        [data-testid="stSidebar"] h2 {
+            font-size: 32px !important;
+            padding-bottom: 0px !important;
+        }
+        
+        /* B. Username (h3) -> Sedang */
+        [data-testid="stSidebar"] h3 {
+            font-size: 22px !important;
+            padding-bottom: 0px !important;
+        }
+        
+        /* C. Role (p) -> Teks biasa, Paling Kecil */
         [data-testid="stSidebar"] p, 
         [data-testid="stSidebar"] span {
-            font-size: 25px !important;
+            font-size: 16px !important;
         }
         
         /* 4. Memaksa KHUSUS tombol di dalam sidebar (Logout) agar berwarna putih */
@@ -302,10 +315,17 @@ st.markdown("""
         }
     </style>
 """, unsafe_allow_html=True)
+
 with st.sidebar:
-    st.markdown(f"## 🏭 MDMS")
-    st.markdown(f"**👤 {st.session_state.username}**")
-    st.markdown(f"**Role: `{st.session_state.role.upper()}`**")
+    # Menggunakan ## (Heading 2) agar paling besar
+    st.markdown("## 🏭 MDMS")
+    
+    # Menggunakan ### (Heading 3) agar ukurannya di tengah-tengah
+    st.markdown(f"### 👤 {st.session_state.username}")
+    
+    # Menggunakan teks tebal biasa (Paragraf) agar menjadi yang terkecil
+    st.markdown(f"**Role:** `{st.session_state.role.upper()}`")
+    
     if st.button("🚪 Logout", use_container_width=True):
         st.session_state.authenticated = False
         st.rerun()
