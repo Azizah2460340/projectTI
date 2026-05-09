@@ -269,18 +269,27 @@ st.markdown("""
             background-color: #2e8b57;
         }
         
-        /* 2. Memaksa KHUSUS tombol di dalam sidebar (Logout) agar berwarna putih */
-        [data-testid="stSidebar"] .stButton button {
-            background-color: white !important;
-            color: #2e8b57 !important; /* Warna teks hijau agar senada dan terbaca */
-            border: none !important; /* Menghilangkan garis pinggir bawaan */
+        /* 2. Mengubah semua teks (judul dan paragraf) di sidebar menjadi putih */
+        [data-testid="stSidebar"] p, 
+        [data-testid="stSidebar"] h1, 
+        [data-testid="stSidebar"] h2, 
+        [data-testid="stSidebar"] h3, 
+        [data-testid="stSidebar"] span {
+            color: white !important;
         }
         
-        /* 3. Mencegah tombol berubah warna hijau saat disentuh/ditekan */
+        /* 3. Memaksa KHUSUS tombol di dalam sidebar (Logout) agar berwarna putih */
+        [data-testid="stSidebar"] .stButton button {
+            background-color: white !important;
+            color: #2e8b57 !important; /* Warna teks tombol tetap hijau agar serasi */
+            border: none !important; 
+        }
+        
+        /* 4. Mencegah tombol berubah warna hijau saat disentuh/ditekan */
         [data-testid="stSidebar"] .stButton button:hover,
         [data-testid="stSidebar"] .stButton button:active,
         [data-testid="stSidebar"] .stButton button:focus {
-            background-color: #f8f9fa !important; /* Tetap putih (tapi sedikit abu-abu agar terasa sedang ditekan) */
+            background-color: #f8f9fa !important; 
             color: #2e8b57 !important;
             border: none !important;
             box-shadow: none !important;
