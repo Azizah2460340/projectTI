@@ -4,8 +4,10 @@ import sqlite3
 from datetime import datetime
 import plotly.express as px
 import base64
+from PIL import Image
 
 # ==================== 0. KONFIGURASI HALAMAN ====================
+logo_cv = Image.open("LogoCV.jpeg")
 st.set_page_config(page_title = "MDMS - CV Amal Mulia", layout="wide", page_icon="🏭")
 
 # -------------------- FUNGSI UNTUK BACKGROUND GIF (BERGERAK) --------------------
