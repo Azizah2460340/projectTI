@@ -302,14 +302,28 @@ if role == "pabrik":
     total_pesanan_makloon = get_df("SELECT SUM(jumlah) FROM pesanan WHERE jenis_pesanan='makloon' AND status='Proses Produksi'").iloc[0,0] or 0
     total_order_waiting = get_df("SELECT SUM(jumlah) FROM pesanan WHERE jenis_pesanan='order_stok' AND status='Menunggu Konfirmasi'").iloc[0,0] or 0
     with col_m1:
-        st.metric("📦 Total Stok", total_stok)
+        total stok = st.metric("📦 Total Stok", total_stok)
+        st.markdown(f'''
+    <span style="
+        background-color: #2e8b57; 
+        color: white; 
+        padding: 6px 16px; 
+        border-radius: 50px; 
+        font-size: 14px; 
+        display: inline-block; 
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    ">
+        📦 {total stok}
+    </span>
+''', unsafe_allow_html=True)
     with col_m2:
         st.metric("🏭 Pesanan Makloon", total_pesanan_makloon)
     with col_m3:
         st.metric("⏳ Order Menunggu", total_order_waiting)
     with col_m4:
         st.metric("📊 Total Produk", get_df("SELECT COUNT(*) FROM produk").iloc[0,0])
-    st.markdown('</div>', unsafe_allow_html=True)
+
     
     t1, t2, t3, t4 = st.tabs(["📊 Manajemen Stok", "🏭 Pesanan Makloon", "🛒 Order Stok Masuk", "📈 Analisis & Produksi"])
     
