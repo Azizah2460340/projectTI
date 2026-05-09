@@ -271,7 +271,7 @@ if role == "pabrik":
     with t1:
         st.markdown('<div class="custom-card">', unsafe_allow_html=True)
         st.subheader("📋 Inventory Real-time")
-        df_stok = int("SELECT id, nama, stok, stok_minimum, harga_jual FROM produk")
+        df_stok = get_df("SELECT id, nama, stok, stok_minimum, harga_jual FROM produk")
         if not df_stok.empty:
             # Warning jika stok di bawah minimum
             produk_rendah = df_stok[df_stok['stok'] < df_stok['stok_minimum']]
@@ -284,7 +284,7 @@ if role == "pabrik":
             col_up1, col_up2 = st.columns([1,1])
             with col_up1:
                 pilih_produk = st.selectbox("Pilih produk", df_stok['nama'].tolist())
-                stok_saat_ini = df_stok[df_stok['nama']==pilih_produk]['stok'].values[0]
+                stok_saat_ini = int[df_stok['nama']==pilih_produk]['stok'].values[0]
                 st.metric("Stok saat ini", stok_saat_ini)
             with col_up2:
                 stok_baru = st.number_input("Stok baru (setelah produksi)", min_value=0, step=1, value=stok_saat_ini)
