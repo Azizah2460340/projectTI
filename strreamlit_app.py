@@ -284,7 +284,7 @@ if role == "pabrik":
             col_up1, col_up2 = st.columns([1,1])
             with col_up1:
                 pilih_produk = st.selectbox("Pilih produk", df_stok['nama'].tolist())
-                stok_saat_ini = int[df_stok['nama']==pilih_produk]['stok'].values[0]
+                stok_saat_ini = int(df_stok[df_stok['nama'] == pilih_produk]['stok'].values[0])
                 st.metric("Stok saat ini", stok_saat_ini)
             with col_up2:
                 stok_baru = st.number_input("Stok baru (setelah produksi)", min_value=0, step=1, value=stok_saat_ini)
