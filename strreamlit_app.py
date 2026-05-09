@@ -9,64 +9,60 @@ import base64
 st.set_page_config(page_title="MDMS - CV Amal Mulia", layout="wide", page_icon="🏭")
 
 # -------------------- FUNGSI UNTUK BACKGROUND GIF (BERGERAK) --------------------
+import streamlit as st
+import base64
+
 def set_background_mp4(mp4_url_or_path):
     """
-    Set background menggunakan GIF (bisa dari URL atau file lokal).
-    Lalu tambahkan lapisan putih semi-transparan agar teks terbaca.
+    Set background menggunakan MP4 (URL atau file lokal).
+    Ditambah overlay putih transparan agar teks tetap kontras.
     """
-    # Cek apakah file lokal atau URL
-    if gif_url_or_path.startswith(('http://', 'https://')):
-        bg_style = f"""
-        <style>
-        .stApp {{
-            background: url("{mp4_url_or_path}") no-repeat center center fixed;
-            background-size: cover;
-        }}
-        /* Overlay putih dengan opacity 85% agar teks jelas */
-        .stApp::before {{
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.85);
-            z-index: -1;
-        }}
-        </style>
-        """
+    is_url = mp4_url_or_path.startswith(('http://', 'https://'))
+    
+    if is_url:
+        video_source = mp4_url_or_path
     else:
-        # Jika file lokal, encode ke base64
         try:
             with open(mp4_url_or_path, "rb") as f:
                 data = f.read()
             b64 = base64.b64encode(data).decode()
-            bg_style = f"""
-            <style>
-            .stApp {{
-                background: url("data:image/mp4;base64,{b64}") no-repeat center center fixed;
-                background-size: cover;
-            }}
-            .stApp::before {{
-                content: "";
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(255, 255, 255, 0.85);
-                z-index: -1;
-            }}
-            </style>
-            """
+            video_source = f"data:video/mp4;base64,{b64}"
         except:
-            bg_style = ""
-    st.markdown(bg_style, unsafe_allow_html=True)
+            return
 
-# -------------------- GUNAKAN BACKGROUND GIF (GANTI DENGAN URL ATAU FILE ANDA) --------------------
-# Contoh: background dari GIPHY (ganti dengan URL GIF favorit Anda)
-BACKGROUND_GIF_URL = "https://1drv.ms/v/c/522DA33D8FA111F0/IQBzm10PeozgTqx2ZFx2rjfmATyDqMfJed4Eq5oktSpsj8M?e=qKuNcX"
-set_background_mp4(BACKGROUND_mp4_URL)
+    video_html = f"""
+        <style>
+        /* Mengatur video agar memenuhi layar dan berada di belakang */
+        #myVideo {{
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%; 
+            min-height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }}
+
+        /* Overlay putih agar konten aplikasi mudah dibaca */
+        .stApp {{
+            background: rgba(255, 255, 255, 0.7); /* Atur kegelapan di sini (0.7 = 70%) */
+        }}
+        </style>
+        
+        <video autoplay muted loop id="myVideo">
+          <source src="{video_source}" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+    """
+    st.markdown(video_html, unsafe_allow_html=True)
+
+# -------------------- KONFIGURASI URL VIDEO --------------------
+# Pastikan nama variabel SAMA saat dibuat dan saat dipanggil
+BACKGROUND_MP4_URL = "https://1drv.ms/v/c/522DA33D8FA111F0/IQBzm10PeozgTqx2ZFx2rjfmATyDqMfJed4Eq5oktSpsj8M?e=6D1Axx" 
+
+# Jika pakai link OneDrive, pastikan itu adalah link "Direct Download"
+# Link biasa dari OneDrive seringkali terblokir (Forbidden) oleh browser
+set_background_mp4(BACKGROUND_MP4_URL)
 
 # ==================== 1. CSS TAMBAHAN UNTUK CARD PUTIH ====================
 st.markdown("""
