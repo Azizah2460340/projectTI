@@ -58,7 +58,7 @@ def set_background_mp4(mp4_url_or_path):
 
 # -------------------- KONFIGURASI URL VIDEO --------------------
 # Pastikan nama variabel SAMA saat dibuat dan saat dipanggil
-BACKGROUND_MP4_URL = "file:///C:/Users/bagus/OneDrive/Pictures/Saved%20Pictures/WhatsApp%20Video%202026-04-25%20at%2018.43.21.mp4" 
+BACKGROUND_MP4_URL = "https://www.youtube.com/watch?v=SLbSsv_2u4A" 
 
 # Jika pakai link OneDrive, pastikan itu adalah link "Direct Download"
 # Link biasa dari OneDrive seringkali terblokir (Forbidden) oleh browser
