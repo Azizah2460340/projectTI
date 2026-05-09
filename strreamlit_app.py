@@ -332,10 +332,10 @@ st.markdown("""
 with st.sidebar:
     # Menggunakan ## (Heading 2) agar paling besar
     st.markdown("## 🏭 MDMS")
-    
+    st.markdown("<br><br>", unsafe_allow_html=True)
     # Menggunakan ### (Heading 3) agar ukurannya di tengah-tengah
     st.markdown(f"### 👤 {st.session_state.username}")
-    
+    st.markdown("<br><br>", unsafe_allow_html=True)
     # Menggunakan teks tebal biasa (Paragraf) agar menjadi yang terkecil
     st.markdown(f"### Role: `{st.session_state.role.upper()}`")
     
