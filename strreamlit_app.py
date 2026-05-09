@@ -207,7 +207,7 @@ if "authenticated" not in st.session_state:
 
 if not st.session_state.authenticated:
     # Bungkus login dalam card putih
-    st.markdown('<div class="main-card">', unsafe_allow_html=True)
+    
     st.title("🏭 MDMS - CV Amal Mulia")
     col_l1, col_l2, col_l3 = st.columns([1,2,1])
     with col_l2:
