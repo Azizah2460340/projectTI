@@ -297,7 +297,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 with st.sidebar:
-    st.markdown("### 🏭 MDMS")
+    st.markdown(f"### 🏭 MDMS")
     st.markdown(f"**👤 {st.session_state.username}**")
     st.markdown(f"**Role: `{st.session_state.role.upper()}`**")
     if st.button("🚪 Logout", use_container_width=True):
