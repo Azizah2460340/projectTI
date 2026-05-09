@@ -6,7 +6,7 @@ import base64
 from pathlib import Path
 
 # ==================== 0. KONFIGURASI HALAMAN & CSS ====================
-st.set_page_config(page_title="MDMS - CV Amal Mulia", layout="wide", page_icon="🏭")
+st.set_page_config(page_title="ABCFN - CV Amal Mulia", layout="wide", page_icon="🏭")
 
 # Fungsi untuk encode gambar ke base64 (untuk background)
 def get_base64_of_bin_file(bin_file):
