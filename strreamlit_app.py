@@ -299,7 +299,7 @@ st.markdown("""
 with st.sidebar:
     st.markdown("### 🏭 MDMS")
     st.markdown(f"**👤 {st.session_state.username}**")
-    st.markdown(f"**Role:** `{st.session_state.role.upper()}`")
+    st.markdown(f"**Role: `{st.session_state.role.upper()}`**")
     if st.button("🚪 Logout", use_container_width=True):
         st.session_state.authenticated = False
         st.rerun()
