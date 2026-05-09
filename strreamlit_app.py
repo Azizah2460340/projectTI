@@ -340,8 +340,10 @@ with st.sidebar:
     st.markdown("## 🏭 MDMS")
     st.markdown(f"### 👤 {st.session_state.username.title()}")
     
-    # KODE YANG DIUBAH: Menghapus backtick (`) dan menggantinya dengan bintang ganda (**)
-    st.markdown(f"### Role: **{st.session_state.role.upper()}**")
+    # KODE YANG DIUBAH: Menghapus ### agar ukuran menjadi 16px (sama dengan tombol),
+    # Membungkus semua dengan ** agar tebal (sama dengan tombol),
+    # dan mengganti .upper() menjadi .title()
+    st.markdown(f"**Role: {st.session_state.role.title()}**")
     
     st.markdown("<br>", unsafe_allow_html=True)
     
