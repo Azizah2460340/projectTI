@@ -305,6 +305,11 @@ st.markdown("""
         [data-testid="stSidebar"] .stButton button {
             background-color: white !important;
             border: none !important; 
+            
+            /* --- KODE TAMBAHAN UNTUK MENENGAHKAN TEKS --- */
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
         }
         
         /* Memaksa teks di dalam tombol menjadi warna hijau dan TEBAL */
@@ -315,6 +320,9 @@ st.markdown("""
             font-weight: bold !important; 
             font-size: 16px !important;   
             margin-bottom: 0px !important; /* Menetralkan spasi di dalam tombol */
+            
+            /* --- MEMASTIKAN TEKS JUGA RATA TENGAH --- */
+            text-align: center !important; 
         }
         
         /* 6. Efek saat tombol disentuh/ditekan */
@@ -338,12 +346,8 @@ st.markdown("""
 
 with st.sidebar:
     st.markdown("## 🏭 MDMS")
-    st.markdown(f"# 👤 {st.session_state.username.title()}")
-    
-    # KODE YANG DIUBAH: Menghapus ### agar ukuran menjadi 16px (sama dengan tombol),
-    # Membungkus semua dengan ** agar tebal (sama dengan tombol),
-    # dan mengganti .upper() menjadi .title()
-    st.markdown(f"#Role: {st.session_state.role.title()}#")
+    st.markdown(f"### 👤 {st.session_state.username.title()}")
+    st.markdown(f"**Role: {st.session_state.role.title()}**")
     
     st.markdown("<br>", unsafe_allow_html=True)
     
