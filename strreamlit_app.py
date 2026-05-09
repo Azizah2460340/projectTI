@@ -269,7 +269,7 @@ st.markdown("""
             background-color: #2e8b57;
         }
         
-        /* 2. Mengubah semua teks (judul dan paragraf) di sidebar menjadi putih */
+        /* 2. Mengubah warna teks menjadi putih */
         [data-testid="stSidebar"] p, 
         [data-testid="stSidebar"] h1, 
         [data-testid="stSidebar"] h2, 
@@ -277,15 +277,21 @@ st.markdown("""
         [data-testid="stSidebar"] span {
             color: white !important;
         }
+
+        /* 3. MENGUBAH UKURAN FONT teks biasa menjadi 15px */
+        [data-testid="stSidebar"] p, 
+        [data-testid="stSidebar"] span {
+            font-size: 15px !important;
+        }
         
-        /* 3. Memaksa KHUSUS tombol di dalam sidebar (Logout) agar berwarna putih */
+        /* 4. Memaksa KHUSUS tombol di dalam sidebar (Logout) agar berwarna putih */
         [data-testid="stSidebar"] .stButton button {
             background-color: white !important;
-            color: #2e8b57 !important; /* Warna teks tombol tetap hijau agar serasi */
+            color: #2e8b57 !important; 
             border: none !important; 
         }
         
-        /* 4. Mencegah tombol berubah warna hijau saat disentuh/ditekan */
+        /* 5. Mencegah tombol berubah warna hijau saat disentuh/ditekan */
         [data-testid="stSidebar"] .stButton button:hover,
         [data-testid="stSidebar"] .stButton button:active,
         [data-testid="stSidebar"] .stButton button:focus {
