@@ -272,7 +272,25 @@ with st.sidebar:
 # Header utama (juga dibungkus card putih transparan)
 
 st.markdown(f"## 👋 Selamat datang, {st.session_state.username}")
-st.markdown(f"{datetime.now().strftime('%A, %d %B %Y')}")
+# Teks "Selamat datang" tanpa kotak
+st.markdown(f"## 👋 Selamat datang, {st.session_state.username}")
+
+# Tanggal dibungkus dengan gaya seperti tombol (badge)
+tanggal = datetime.now().strftime('%A, %d %B %Y')
+st.markdown(f'''
+    <span style="
+        background-color: #3b82f6; 
+        color: white; 
+        padding: 6px 16px; 
+        border-radius: 50px; 
+        font-size: 14px; 
+        display: inline-block; 
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    ">
+        📅 {tanggal}
+    </span>
+''', unsafe_allow_html=True)
 
 
 # ==================== 5. DASHBOARD ====================
