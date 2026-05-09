@@ -472,7 +472,6 @@ if role == "pabrik":
         st.markdown('</div>', unsafe_allow_html=True)
     
     with t3:
-        st.markdown('<div class="custom-card">', unsafe_allow_html=True)
         st.subheader("⏳ Order Stok Menunggu Konfirmasi")
         df_waiting = get_df("""SELECT * FROM pesanan 
                                WHERE jenis_pesanan='order_stok' 
