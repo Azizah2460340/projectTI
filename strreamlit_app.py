@@ -347,7 +347,7 @@ st.markdown("""
 with st.sidebar:
     st.markdown("## 🏭 MDMS")
     st.markdown(f"### 👤 {st.session_state.username.title()}")
-    st.markdown(f"**Role: {st.session_state.role.title()}**")
+    st.markdown(f"### **Role: {st.session_state.role.title()}**")
     
     st.markdown("<br>", unsafe_allow_html=True)
     
