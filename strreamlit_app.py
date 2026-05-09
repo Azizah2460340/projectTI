@@ -281,7 +281,7 @@ st.markdown("""
         /* 3. MENGUBAH UKURAN FONT teks biasa menjadi 15px */
         [data-testid="stSidebar"] p, 
         [data-testid="stSidebar"] span {
-            font-size: 15px !important;
+            font-size: 25px !important;
         }
         
         /* 4. Memaksa KHUSUS tombol di dalam sidebar (Logout) agar berwarna putih */
