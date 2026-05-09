@@ -272,7 +272,7 @@ with st.sidebar:
 # Header utama (juga dibungkus card putih transparan)
 st.markdown('<div class="main-card">', unsafe_allow_html=True)
 st.markdown(f"## 👋 Selamat datang, {st.session_state.username}")
-st.markdown(f"{datetime.now().strftime('%A, %d %B %Y')}")
+st.columns(f"{datetime.now().strftime('%A, %d %B %Y')}")
 st.markdown('</div>', unsafe_allow_html=True)
 
 # ==================== 5. DASHBOARD ====================
