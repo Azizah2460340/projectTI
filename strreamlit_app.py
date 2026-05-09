@@ -268,49 +268,51 @@ st.markdown("""
             background-color: #2e8b57;
         }
         
-        /* 2. Mengubah warna teks menjadi putih untuk semua level teks */
+        /* 2. Mengubah warna teks menjadi putih dan memastikan teks judul tidak tebal */
         [data-testid="stSidebar"] p, 
         [data-testid="stSidebar"] h1, 
         [data-testid="stSidebar"] h2, 
         [data-testid="stSidebar"] h3, 
         [data-testid="stSidebar"] span {
             color: white !important;
+            font-weight: normal !important; 
         }
 
-        /* 3. MENGATUR UKURAN FONT BERDASARKAN URUTAN (HIERARKI) */
-        
-        /* A. MDMS (h2) -> Paling Besar */
-        [data-testid="stSidebar"] h2 {
-            font-size: 32px !important;
+        /* =========================================================
+           3. MENGATUR SPASI BARIS (SEPERTI SPASI 1.5 DI WORD) 
+           ========================================================= */
+        [data-testid="stSidebar"] h2, 
+        [data-testid="stSidebar"] h3, 
+        [data-testid="stSidebar"] p {
+            line-height: 1.5 !important;      /* Ini adalah Spasi 1.5 */
+            margin-bottom: 12px !important;   /* Jarak "Enter" antar tulisan */
+            margin-top: 0px !important;
             padding-bottom: 0px !important;
         }
-        
-        /* B. Username (h3) -> Sedang */
-        [data-testid="stSidebar"] h3 {
-            font-size: 22px !important;
-            padding-bottom: 0px !important;
-        }
-        
-        /* C. Role (p) -> Teks biasa, Paling Kecil */
+
+        /* 4. MENGATUR UKURAN FONT BERDASARKAN URUTAN */
+        [data-testid="stSidebar"] h2 { font-size: 32px !important; }
+        [data-testid="stSidebar"] h3 { font-size: 22px !important; }
         [data-testid="stSidebar"] p, 
-        [data-testid="stSidebar"] span {
-            font-size: 16px !important;
-        }
+        [data-testid="stSidebar"] span { font-size: 16px !important; }
         
-        /* 4. Memaksa KHUSUS tombol di dalam sidebar (Logout) agar berwarna putih */
+        /* 5. Memaksa KHUSUS tombol di dalam sidebar (Logout) agar berwarna putih */
         [data-testid="stSidebar"] .stButton button {
             background-color: white !important;
             border: none !important; 
         }
         
-        /* Memaksa SEMUA jenis teks di dalam tombol (termasuk ###) menjadi warna hijau */
+        /* Memaksa teks di dalam tombol menjadi warna hijau dan TEBAL */
         [data-testid="stSidebar"] .stButton button p,
         [data-testid="stSidebar"] .stButton button h3,
         [data-testid="stSidebar"] .stButton button div {
             color: #2e8b57 !important;
+            font-weight: bold !important; 
+            font-size: 16px !important;   
+            margin-bottom: 0px !important; /* Menetralkan spasi di dalam tombol */
         }
         
-        /* 5. Mencegah tombol berubah warna hijau saat disentuh/ditekan */
+        /* 6. Efek saat tombol disentuh/ditekan */
         [data-testid="stSidebar"] .stButton button:hover,
         [data-testid="stSidebar"] .stButton button:active,
         [data-testid="stSidebar"] .stButton button:focus {
@@ -319,32 +321,29 @@ st.markdown("""
             box-shadow: none !important;
         }
         
-        /* Memastikan warna teks di dalam tombol tetap hijau saat disentuh/ditekan */
         [data-testid="stSidebar"] .stButton button:hover p,
-        [data-testid="stSidebar"] .stButton button:hover h3,
+        [data-testid="stSidebar"] .stButton button:hover div,
         [data-testid="stSidebar"] .stButton button:active p,
-        [data-testid="stSidebar"] .stButton button:active h3 {
+        [data-testid="stSidebar"] .stButton button:active div {
             color: #2e8b57 !important;
+            font-weight: bold !important;
         }
     </style>
 """, unsafe_allow_html=True)
 
 with st.sidebar:
-    # Menggunakan ## (Heading 2) agar paling besar
+    # Teks sekarang tidak lagi dipisahkan oleh <br><br>
+    # Jarak antar barisnya diatur otomatis oleh CSS di atas (margin-bottom: 12px)
     st.markdown("## 🏭 MDMS")
-    st.markdown("<br><br>", unsafe_allow_html=True)
-    # Menggunakan ### (Heading 3) agar ukurannya di tengah-tengah
     st.markdown(f"### 👤 {st.session_state.username}")
-    st.markdown("<br><br>", unsafe_allow_html=True)
-    # Menggunakan teks tebal biasa (Paragraf) agar menjadi yang terkecil
     st.markdown(f"### Role: `{st.session_state.role.upper()}`")
     
-    # MENAMBAHKAN SPACE/JARAK KOSONG
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    # Saya sisakan SATU <br> di sini hanya untuk memberi jarak sedikit sebelum tombol Logout
+    st.markdown("<br>", unsafe_allow_html=True)
     
     if st.button("🚪 Logout", use_container_width=True):
-            st.session_state.authenticated = False
-            st.rerun()
+        st.session_state.authenticated = False
+        st.rerun()
         
 # Teks "Selamat datang" tanpa kotak
 st.markdown(f"## 👋 Selamat datang, {st.session_state.username}")
