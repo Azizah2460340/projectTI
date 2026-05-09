@@ -261,10 +261,29 @@ if not st.session_state.authenticated:
 
     st.stop()
 # ==================== 4. SIDEBAR ====================
+# Menyuntikkan CSS khusus untuk area sidebar
 st.markdown("""
     <style>
+        /* 1. Mengubah warna latar sidebar menjadi hijau laut (#2e8b57) */
         [data-testid="stSidebar"] {
             background-color: #2e8b57;
+        }
+        
+        /* 2. Memaksa KHUSUS tombol di dalam sidebar (Logout) agar berwarna putih */
+        [data-testid="stSidebar"] .stButton button {
+            background-color: white !important;
+            color: #2e8b57 !important; /* Warna teks hijau agar senada dan terbaca */
+            border: none !important; /* Menghilangkan garis pinggir bawaan */
+        }
+        
+        /* 3. Mencegah tombol berubah warna hijau saat disentuh/ditekan */
+        [data-testid="stSidebar"] .stButton button:hover,
+        [data-testid="stSidebar"] .stButton button:active,
+        [data-testid="stSidebar"] .stButton button:focus {
+            background-color: #f8f9fa !important; /* Tetap putih (tapi sedikit abu-abu agar terasa sedang ditekan) */
+            color: #2e8b57 !important;
+            border: none !important;
+            box-shadow: none !important;
         }
     </style>
 """, unsafe_allow_html=True)
