@@ -144,7 +144,7 @@ st.markdown("""
 
 # ==================== 2. FUNGSI DATABASE ====================
 def get_connection():
-    return sqlite3.connect('makloon.db', check_same_thread=False)
+    return sqlite3.connect('makloon_v2.db', check_same_thread=False)
 
 def init_db():
     with get_connection() as conn:
