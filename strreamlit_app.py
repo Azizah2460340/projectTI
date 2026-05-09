@@ -268,6 +268,7 @@ if role == "pabrik":
     t1, t2, t3, t4, t5 = st.tabs(["📊 Manajemen Stok", "🏭 Pesanan Makloon", "🛒 Order Stok Masuk", "📈 Analisis & Produksi", "➕ Tambah Produk"])
     
     # TAB 1: MANAJEMEN STOK
+# TAB 1: MANAJEMEN STOK
     with t1:
         st.markdown('<div class="custom-card">', unsafe_allow_html=True)
         st.subheader("📋 Inventory Real-time")
@@ -279,6 +280,7 @@ if role == "pabrik":
             if not produk_rendah.empty:
                 st.warning(f"⚠️ Stok berikut perlu segera diproduksi: {', '.join(produk_rendah['nama'].tolist())}")
             
+            # Jika Anda pakai Streamlit versi lama, hapus 'hide_index=True' jika muncul error
             st.dataframe(df_stok, use_container_width=True, hide_index=True)
             
             st.divider()
@@ -286,8 +288,9 @@ if role == "pabrik":
             col_up1, col_up2 = st.columns([1,1])
             with col_up1:
                 pilih_produk = st.selectbox("Pilih produk", df_stok['nama'].tolist(), key="update_produk")
-                stok_saat_ini = df_stok[df_stok['nama']==pilih_produk]['stok'].values[0]
-                stok_min = df_stok[df_stok['nama']==pilih_produk]['stok_minimum'].values[0]
+                # PERBAIKAN: Konversi numpy.int64 ke int standar
+                stok_saat_ini = int(df_stok[df_stok['nama']==pilih_produk]['stok'].values[0])
+                stok_min = int(df_stok[df_stok['nama']==pilih_produk]['stok_minimum'].values[0])
                 st.metric("Stok saat ini", stok_saat_ini)
             with col_up2:
                 stok_baru = st.number_input("Stok baru (setelah produksi)", min_value=0, step=1, value=stok_saat_ini)
