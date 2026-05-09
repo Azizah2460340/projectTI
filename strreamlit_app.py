@@ -262,18 +262,9 @@ if not st.session_state.authenticated:
     st.stop()
 # ==================== 4. SIDEBAR ====================
 with st.sidebar:
-    # 1. Menampilkan gambar logo di sidebar
-    # Pastikan nama filenya sama dengan yang Anda gunakan sebelumnya (misal: logo.jpeg)
-    st.image("logo.jpeg", use_container_width=True) 
-    
-    # 2. Judul aplikasi
-    st.markdown("### MDMS") 
-    
-    # 3. Menampilkan nama dan role pengguna yang sedang login
+    st.markdown("### 🏭 MDMS")
     st.markdown(f"**👤 {st.session_state.username}**")
     st.markdown(f"**Role:** `{st.session_state.role.upper()}`")
-    
-    # 4. Tombol Keluar (Logout)
     if st.button("🚪 Logout", use_container_width=True):
         st.session_state.authenticated = False
         st.rerun()
