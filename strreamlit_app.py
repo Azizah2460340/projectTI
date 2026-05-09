@@ -6,7 +6,7 @@ import plotly.express as px
 import base64
 
 # ==================== 0. KONFIGURASI HALAMAN ====================
-st.set_page_config(page_title="MDMS - CV Amal Mulia", layout="center", page_icon="🏭")
+st.set_page_config(page_title="MDMS - CV Amal Mulia", layout="wide", page_icon="🏭")
 
 # -------------------- FUNGSI UNTUK BACKGROUND GIF (BERGERAK) --------------------
 import streamlit as st
