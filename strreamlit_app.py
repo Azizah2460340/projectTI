@@ -268,10 +268,7 @@ with st.sidebar:
     if st.button("🚪 Logout", use_container_width=True):
         st.session_state.authenticated = False
         st.rerun()
-
-# Header utama (juga dibungkus card putih transparan)
-
-st.markdown(f"## 👋 Selamat datang, {st.session_state.username}")
+        
 # Teks "Selamat datang" tanpa kotak
 st.markdown(f"## 👋 Selamat datang, {st.session_state.username}")
 
@@ -279,8 +276,8 @@ st.markdown(f"## 👋 Selamat datang, {st.session_state.username}")
 tanggal = datetime.now().strftime('%A, %d %B %Y')
 st.markdown(f'''
     <span style="
-        background-color: #3b82f6; 
-        color: white; 
+        background-color: #0c3f27; 
+        color: ; 
         padding: 6px 16px; 
         border-radius: 50px; 
         font-size: 14px; 
