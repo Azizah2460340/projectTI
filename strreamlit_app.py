@@ -8,7 +8,7 @@ from PIL import Image
 
 # ==================== 0. KONFIGURASI HALAMAN ====================
 logo_cv = Image.open("LogoCV.jpeg")
-st.set_page_config(page_title = "MDMS - CV Amal Mulia", layout="wide", page_icon="🏭")
+st.set_page_config(page_title = "MDMS - CV Amal Mulia", layout="wide", page_icon="LogoCV")
 
 # -------------------- FUNGSI UNTUK BACKGROUND GIF (BERGERAK) --------------------
 import streamlit as st
