@@ -302,7 +302,7 @@ if role == "pabrik":
     total_pesanan_makloon = get_df("SELECT SUM(jumlah) FROM pesanan WHERE jenis_pesanan='makloon' AND status='Proses Produksi'").iloc[0,0] or 0
     total_order_waiting = get_df("SELECT SUM(jumlah) FROM pesanan WHERE jenis_pesanan='order_stok' AND status='Menunggu Konfirmasi'").iloc[0,0] or 0
     with col_m1:
-        st.markdown("📦 Total Stok", total_stok)
+        st.metric("📦 Total Stok", total_stok)
     with col_m2:
         st.metric("🏭 Pesanan Makloon", total_pesanan_makloon)
     with col_m3:
