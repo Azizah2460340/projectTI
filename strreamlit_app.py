@@ -277,6 +277,11 @@ st.markdown("""
             color: white !important;
             font-weight: normal !important; 
         }
+        
+        /* MEMASTIKAN TEKS YANG DIBERI BINTANG GANDA (**) TETAP BISA TEBAL */
+        [data-testid="stSidebar"] strong {
+            font-weight: bold !important;
+        }
 
         /* =========================================================
            3. MENGATUR SPASI BARIS (SEPERTI SPASI 1.5 DI WORD) 
@@ -332,13 +337,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 with st.sidebar:
-    # Teks sekarang tidak lagi dipisahkan oleh <br><br>
-    # Jarak antar barisnya diatur otomatis oleh CSS di atas (margin-bottom: 12px)
     st.markdown("## 🏭 MDMS")
-    st.markdown(f"### 👤 {st.session_state.username}")
-    st.markdown(f"### Role: `{st.session_state.role.upper()}`")
+    st.markdown(f"### 👤 {st.session_state.username.title()}")
     
-    # Saya sisakan SATU <br> di sini hanya untuk memberi jarak sedikit sebelum tombol Logout
+    # KODE YANG DIUBAH: Menghapus backtick (`) dan menggantinya dengan bintang ganda (**)
+    st.markdown(f"### Role: **{st.session_state.role.upper()}**")
+    
     st.markdown("<br>", unsafe_allow_html=True)
     
     if st.button("🚪 Logout", use_container_width=True):
