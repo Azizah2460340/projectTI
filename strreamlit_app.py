@@ -271,7 +271,7 @@ if role == "pabrik":
     with t1:
         st.markdown('<div class="custom-card">', unsafe_allow_html=True)
         st.subheader("📋 Inventory Real-time")
-        df_stok = get_df("SELECT id, nama, stok, stok_minimum, harga_jual FROM produk")
+        df_stok = int("SELECT id, nama, stok, stok_minimum, harga_jual FROM produk")
         if not df_stok.empty:
             # Warning jika stok di bawah minimum
             produk_rendah = df_stok[df_stok['stok'] < df_stok['stok_minimum']]
