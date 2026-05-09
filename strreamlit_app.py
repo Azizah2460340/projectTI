@@ -277,7 +277,7 @@ tanggal = datetime.now().strftime('%A, %d %B %Y')
 st.markdown(f'''
     <span style="
         background-color: #0c3f27; 
-        color: ; 
+        color: white; 
         padding: 6px 16px; 
         border-radius: 50px; 
         font-size: 14px; 
