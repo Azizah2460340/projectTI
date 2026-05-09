@@ -342,7 +342,7 @@ with st.sidebar:
     # MENAMBAHKAN SPACE/JARAK KOSONG
     st.markdown("<br><br>", unsafe_allow_html=True)
     
-    if st.button(f"### 🚪 Logout", use_container_width=True):
+    if st.button(f"** 🚪 Logout", use_container_width=True):
         st.session_state.authenticated = False
         st.rerun()
         
