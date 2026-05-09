@@ -95,13 +95,6 @@ st.markdown("""
         font-weight: bold;
         color: #1e3c2c;
     }
-    /* Custom card untuk form */
-    .custom-card {
-        background: white;
-        border-radius: 20px;
-        padding: 1.5rem;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        margin-bottom: 1.5rem;
     }
     /* Tab styling */
     .stTabs [data-baseweb="tab-list"] {
