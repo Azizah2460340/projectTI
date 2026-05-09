@@ -65,7 +65,7 @@ def set_background_gif(gif_url_or_path):
 
 # -------------------- GUNAKAN BACKGROUND GIF (GANTI DENGAN URL ATAU FILE ANDA) --------------------
 # Contoh: background dari GIPHY (ganti dengan URL GIF favorit Anda)
-BACKGROUND_GIF_URL = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHR0c2hjeTZyeWRoaDR6ZGR1MnZieGJ2ZmF1aHJkNXM2N2RkcGt1cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0MYt5jEv6RXpQ3YI/giphy.gif"
+BACKGROUND_GIF_URL = "https://1drv.ms/v/c/522DA33D8FA111F0/IQBzm10PeozgTqx2ZFx2rjfmATyDqMfJed4Eq5oktSpsj8M?e=qKuNcX"
 set_background_gif(BACKGROUND_GIF_URL)
 
 # ==================== 1. CSS TAMBAHAN UNTUK CARD PUTIH ====================
