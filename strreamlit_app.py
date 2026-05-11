@@ -11,14 +11,7 @@ st.set_page_config(page_title="MDMS - CV Amal Mulia", layout="wide", page_icon="
 # ==================== 1. CSS TAMBAHAN UNTUK CARD PUTIH ====================
 st.markdown("""
 <style>
-    /* Semua konten utama dibungkus card putih transparan */
-    .main-card {
-        background-color: rgba(255, 255, 255, 0.92);
-        border-radius: 25px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        backdrop-filter: blur(2px);
+    
     }
     /* Sidebar juga dibuat sedikit transparan agar background terlihat */
     .css-1d391kg, .css-12oz5g0 {
