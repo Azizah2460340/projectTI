@@ -374,40 +374,48 @@ with st.sidebar:
         
 
 
-# ==================== HEADER DENGAN WAKTU DEVICE ====================
-def show_device_time_header(user_name):
-    # Komponen HTML & JS untuk mengambil waktu lokal browser
-    st.markdown(f"""
-        <div class="white-card" style="padding: 20px; border-radius: 10px; background-color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px;">
-            <h2 style="margin: 0;">🏢 Selamat Datang, {user_name}</h2>
-            <p id="clock" style="font-size: 1.2rem; font-weight: bold; color: #1f7a59; margin-top: 10px;">Memuat waktu...</p>
-        </div>
+import streamlit.components.v1 as components
 
-        <script>
-            function updateClock() {{
-                const now = new Date();
-                const options = {{ 
-                    weekday: 'long', 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit'
-                }};
-                // Menggunakan format lokal Indonesia (id-ID)
-                const timeString = now.toLocaleDateString('id-ID', options);
-                document.getElementById('clock').innerHTML = "🕒 " + timeString;
-            }}
-            
-            // Update setiap 1 detik
-            setInterval(updateClock, 1000);
-            updateClock(); // Jalankan langsung saat load
-        </script>
-    """, unsafe_allow_html=True)
+# ==================== HEADER DEVICE TIME (STABLE VERSION) ====================
+def show_stable_clock(user_name):
+    # CSS & HTML untuk tampilan kartu
+    html_code = f"""
+    <div style="
+        font-family: 'Source Sans Pro', sans-serif;
+        padding: 15px;
+        border-radius: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        border-left: 5px solid #1f7a59;
+    ">
+        <h2 style="margin: 0; color: #31333F; font-size: 1.5rem;">🏢 Selamat Datang, {user_name}</h2>
+        <div id="clock" style="
+            font-size: 1.1rem; 
+            font-weight: 600; 
+            color: #1f7a59; 
+            margin-top: 8px;
+        ">Memuat...</div>
+    </div>
 
-# Panggil di dalam aplikasi
-show_device_time_header(username)
+    <script>
+        function updateClock() {{
+            const now = new Date();
+            const options = {{ 
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
+                hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
+            }};
+            document.getElementById('clock').innerHTML = "🕒 " + now.toLocaleDateString('id-ID', options);
+        }}
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+    """
+    
+    # Menggunakan components.html agar JS berjalan di lingkungan yang terisolasi dan cepat
+    components.html(html_code, height=120)
+
+# Panggil fungsi ini di posisi header kamu
+show_stable_clock(username)
 
 # =========================================================
 # ==================== ROLE PABRIK ========================
