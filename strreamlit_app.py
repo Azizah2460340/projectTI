@@ -371,12 +371,19 @@ with st.sidebar:
 
         st.session_state.authenticated = False
         st.rerun()
+import streamlit as st
+# ... import lainnya ...
+from streamlit_autorefresh import st_autorefresh # Tambahkan ini
+
+# Refresh otomatis setiap 1 detik (1000 milidetik)
+st_autorefresh(interval=1000, key="daterefresh")
 
 # ==================== HEADER ====================
+# Ubah bagian header kamu menjadi seperti ini:
 st.markdown(f"""
 <div class="white-card">
     <h2>🏢 Selamat Datang, {username}</h2>
-    <p>{datetime.now().strftime('%A, %d %B %Y')}</p>
+    <p>{datetime.now().strftime('%A, %d %B %Y | %H:%M:%S')}</p> 
 </div>
 """, unsafe_allow_html=True)
 
