@@ -33,7 +33,15 @@ section[data-testid="stSidebar"]{
 section[data-testid="stSidebar"] *{
     color:white !important;
 }
+/* Custom card untuk form */
+    .custom-card {
+        background: white;
+        border-radius: 20px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        margin-bottom: 1.5rem;
 
+}
 /* CARD */
 .white-card{
     background:white;
