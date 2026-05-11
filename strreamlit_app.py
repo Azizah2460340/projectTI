@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import sqlite3
 from datetime import datetime
-
+import time
 # ==================== PAGE CONFIG ====================
 st.set_page_config(
     page_title="OrderStock - CV Amal Mulia",
@@ -375,16 +375,22 @@ with st.sidebar:
 import time # Tambahkan di bagian paling atas import
 
 # ==================== HEADER ====================
-header_placeholder = st.empty()
+# Fungsi ini akan berjalan terus menerus hanya di bagian fragment ini saja
+@st.fragment(run_every=1.0)
+def show_realtime_header(user_name):
+    now = datetime.now()
+    # Format waktu: Hari, Tanggal Bulan Tahun - Jam:Menit:Detik
+    current_time = now.strftime('%A, %d %B %Y — %H:%M:%S')
+    
+    st.markdown(f"""
+    <div class="white-card">
+        <h2>🏢 Selamat Datang, {user_name}</h2>
+        <p style="font-size: 1.2rem; font-weight: bold; color: #1f7a59;">🕒 {current_time}</p>
+    </div>
+    """, unsafe_allow_html=True)
 
-# Fungsi untuk update waktu (ini akan berjalan setiap kali script dipanggil)
-current_time = datetime.now().strftime('%A, %d %B %Y | %H:%M:%S')
-header_placeholder.markdown(f"""
-<div class="white-card">
-    <h2>🏢 Selamat Datang, {username}</h2>
-    <p>{current_time}</p>
-</div>
-""", unsafe_allow_html=True)
+# Panggil fungsinya
+show_realtime_header(username)
 
 # =========================================================
 # ==================== ROLE PABRIK ========================
