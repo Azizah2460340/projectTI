@@ -8,64 +8,9 @@ import base64
 # ==================== 0. KONFIGURASI HALAMAN ====================
 st.set_page_config(page_title="MDMS - CV Amal Mulia", layout="wide", page_icon="🏭")
 
-# -------------------- FUNGSI UNTUK BACKGROUND GIF (BERGERAK) --------------------
-def set_background_gif(gif_url_or_path):
-    """
-    Set background menggunakan GIF (bisa dari URL atau file lokal).
-    Lalu tambahkan lapisan putih semi-transparan agar teks terbaca.
-    """
-    # Cek apakah file lokal atau URL
-    if gif_url_or_path.startswith(('http://', 'https://')):
-        bg_style = f"""
-        <style>
-        .stApp {{
-            background: url("{gif_url_or_path}") no-repeat center center fixed;
-            background-size: cover;
-        }}
-        /* Overlay putih dengan opacity 85% agar teks jelas */
-        .stApp::before {{
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.85);
-            z-index: -1;
-        }}
-        </style>
-        """
-    else:
-        # Jika file lokal, encode ke base64
-        try:
-            with open(gif_url_or_path, "rb") as f:
-                data = f.read()
-            b64 = base64.b64encode(data).decode()
-            bg_style = f"""
-            <style>
-            .stApp {{
-                background: url("data:image/gif;base64,{b64}") no-repeat center center fixed;
-                background-size: cover;
-            }}
-            .stApp::before {{
-                content: "";
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(255, 255, 255, 0.85);
-                z-index: -1;
-            }}
-            </style>
-            """
-        except:
-            bg_style = ""
-    st.markdown(bg_style, unsafe_allow_html=True)
-
 # -------------------- GUNAKAN BACKGROUND GIF (GANTI DENGAN URL ATAU FILE ANDA) --------------------
 # Contoh: background dari GIPHY (ganti dengan URL GIF favorit Anda)
-BACKGROUND_GIF_URL = "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHR0c2hjeTZyeWRoaDR6ZGR1MnZieGJ2ZmF1aHJkNXM2N2RkcGt1cyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l0MYt5jEv6RXpQ3YI/giphy.gif"
+BACKGROUND_GIF_URL = "https://www.google.com/imgres?q=gift%20hd%20kurma&imgurl=https%3A%2F%2Fpng.pngtree.com%2Fpng-vector%2F20240628%2Fourmid%2Fpngtree-date-palm-tree-png-image_12782105.png&imgrefurl=https%3A%2F%2Fid.pngtree.com%2Fso%2Fpohon-kurma&docid=gyYJPTtHwhFyTM&tbnid=iTiCPOAId9ud1M&vet=12ahUKEwioh-PPwrGUAxVNcWwGHSjgB9QQnPAOegQIcRAB..i&w=643&h=360&hcb=2&ved=2ahUKEwioh-PPwrGUAxVNcWwGHSjgB9QQnPAOegQIcRAB"
 set_background_gif(BACKGROUND_GIF_URL)
 
 # ==================== 1. CSS TAMBAHAN UNTUK CARD PUTIH ====================
