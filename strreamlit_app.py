@@ -8,11 +8,6 @@ import base64
 # ==================== 0. KONFIGURASI HALAMAN ====================
 st.set_page_config(page_title="MDMS - CV Amal Mulia", layout="wide", page_icon="🏭")
 
-# -------------------- GUNAKAN BACKGROUND GIF (GANTI DENGAN URL ATAU FILE ANDA) --------------------
-# Contoh: background dari GIPHY (ganti dengan URL GIF favorit Anda)
-BACKGROUND_GIF_URL = "https://www.google.com/imgres?q=gift%20hd%20kurma&imgurl=https%3A%2F%2Fpng.pngtree.com%2Fpng-vector%2F20240628%2Fourmid%2Fpngtree-date-palm-tree-png-image_12782105.png&imgrefurl=https%3A%2F%2Fid.pngtree.com%2Fso%2Fpohon-kurma&docid=gyYJPTtHwhFyTM&tbnid=iTiCPOAId9ud1M&vet=12ahUKEwioh-PPwrGUAxVNcWwGHSjgB9QQnPAOegQIcRAB..i&w=643&h=360&hcb=2&ved=2ahUKEwioh-PPwrGUAxVNcWwGHSjgB9QQnPAOegQIcRAB"
-set_background_gif(BACKGROUND_GIF_URL)
-
 # ==================== 1. CSS TAMBAHAN UNTUK CARD PUTIH ====================
 st.markdown("""
 <style>
