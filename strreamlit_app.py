@@ -371,19 +371,18 @@ with st.sidebar:
 
         st.session_state.authenticated = False
         st.rerun()
-import streamlit as st
-# ... import lainnya ...
-from streamlit_autorefresh import st_autorefresh # Tambahkan ini
-
-# Refresh otomatis setiap 1 detik (1000 milidetik)
-st_autorefresh(interval=1000, key="daterefresh")
+        
+import time # Tambahkan di bagian paling atas import
 
 # ==================== HEADER ====================
-# Ubah bagian header kamu menjadi seperti ini:
-st.markdown(f"""
+header_placeholder = st.empty()
+
+# Fungsi untuk update waktu (ini akan berjalan setiap kali script dipanggil)
+current_time = datetime.now().strftime('%A, %d %B %Y | %H:%M:%S')
+header_placeholder.markdown(f"""
 <div class="white-card">
     <h2>🏢 Selamat Datang, {username}</h2>
-    <p>{datetime.now().strftime('%A, %d %B %Y | %H:%M:%S')}</p> 
+    <p>{current_time}</p>
 </div>
 """, unsafe_allow_html=True)
 
