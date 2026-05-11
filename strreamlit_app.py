@@ -372,25 +372,42 @@ with st.sidebar:
         st.session_state.authenticated = False
         st.rerun()
         
-import time # Tambahkan di bagian paling atas import
 
-# ==================== HEADER ====================
-# Fungsi ini akan berjalan terus menerus hanya di bagian fragment ini saja
-@st.fragment(run_every=1.0)
-def show_realtime_header(user_name):
-    now = datetime.now()
-    # Format waktu: Hari, Tanggal Bulan Tahun - Jam:Menit:Detik
-    current_time = now.strftime('%A, %d %B %Y — %H:%M:%S')
-    
+
+# ==================== HEADER DENGAN WAKTU DEVICE ====================
+def show_device_time_header(user_name):
+    # Komponen HTML & JS untuk mengambil waktu lokal browser
     st.markdown(f"""
-    <div class="white-card">
-        <h2>🏢 Selamat Datang, {user_name}</h2>
-        <p style="font-size: 1.2rem; font-weight: bold; color: #1f7a59;">🕒 {current_time}</p>
-    </div>
+        <div class="white-card" style="padding: 20px; border-radius: 10px; background-color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.05); margin-bottom: 20px;">
+            <h2 style="margin: 0;">🏢 Selamat Datang, {user_name}</h2>
+            <p id="clock" style="font-size: 1.2rem; font-weight: bold; color: #1f7a59; margin-top: 10px;">Memuat waktu...</p>
+        </div>
+
+        <script>
+            function updateClock() {{
+                const now = new Date();
+                const options = {{ 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                }};
+                // Menggunakan format lokal Indonesia (id-ID)
+                const timeString = now.toLocaleDateString('id-ID', options);
+                document.getElementById('clock').innerHTML = "🕒 " + timeString;
+            }}
+            
+            // Update setiap 1 detik
+            setInterval(updateClock, 1000);
+            updateClock(); // Jalankan langsung saat load
+        </script>
     """, unsafe_allow_html=True)
 
-# Panggil fungsinya
-show_realtime_header(username)
+# Panggil di dalam aplikasi
+show_device_time_header(username)
 
 # =========================================================
 # ==================== ROLE PABRIK ========================
