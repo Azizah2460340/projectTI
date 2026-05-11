@@ -215,7 +215,7 @@ with st.sidebar:
 
 st.markdown(f"## 👋 Selamat datang, {st.session_state.username}")
 st.markdown(f"{datetime.now().strftime('%A, %d %B %Y')}")
-st.markdown('</div>', unsafe_allow_html=True)
+
 
 # ==================== 5. DASHBOARD ====================
 role = st.session_state.role
@@ -235,12 +235,12 @@ if role == "pabrik":
         st.metric("⏳ Order Menunggu", total_order_waiting)
     with col_m4:
         st.metric("📊 Total Produk", get_df("SELECT COUNT(*) FROM produk").iloc[0,0])
-    st.markdown('</div>', unsafe_allow_html=True)
+    
     
     t1, t2, t3, t4 = st.tabs(["📊 Manajemen Stok", "🏭 Pesanan Makloon", "🛒 Order Stok Masuk", "📈 Analisis & Produksi"])
     
     with t1:
-        st.markdown('<div class="custom-card">', unsafe_allow_html=True)
+        
         st.subheader("📋 Inventory Real-time")
         df_stok = get_df("SELECT id, nama, stok, stok_minimum, harga_jual FROM produk")
         if not df_stok.empty:
@@ -265,10 +265,10 @@ if role == "pabrik":
                     st.rerun()
         else:
             st.info("Belum ada data produk.")
-        st.markdown('</div>', unsafe_allow_html=True)
+        
     
     with t2:
-        st.markdown('<div class="custom-card">', unsafe_allow_html=True)
+        
         st.subheader("➕ Input Pesanan Makloon Baru")
         with st.form("add_makloon", clear_on_submit=True):
             col_a, col_b = st.columns(2)
@@ -301,10 +301,9 @@ if role == "pabrik":
             st.dataframe(df_makloon, use_container_width=True, hide_index=True)
         else:
             st.info("Belum ada pesanan makloon.")
-        st.markdown('</div>', unsafe_allow_html=True)
-    
+        
     with t3:
-        st.markdown('<div class="custom-card">', unsafe_allow_html=True)
+       
         st.subheader("⏳ Order Stok Menunggu Konfirmasi")
         df_waiting = get_df("""SELECT * FROM pesanan 
                                WHERE jenis_pesanan='order_stok' 
@@ -345,10 +344,10 @@ if role == "pabrik":
                                ORDER BY tanggal_konfirmasi DESC""")
         if not df_history.empty:
             st.dataframe(df_history, use_container_width=True, hide_index=True)
-        st.markdown('</div>', unsafe_allow_html=True)
+        
     
     with t4:
-        st.markdown('<div class="custom-card">', unsafe_allow_html=True)
+        
         st.subheader("📊 Dashboard Produksi")
         df_chart = get_df("SELECT nama, stok FROM produk")
         if not df_chart.empty:
@@ -381,10 +380,9 @@ if role == "pabrik":
                     st.info(f"{produk}: Stok aman.")
         else:
             st.info("Tidak ada pesanan makloon yang perlu diproduksi saat ini.")
-        st.markdown('</div>', unsafe_allow_html=True)
-
+        
 elif role == "distributor":
-    st.markdown('<div class="main-card">', unsafe_allow_html=True)
+    
     st.subheader("🏪 Portal Distributor")
     tab1, tab2, tab3 = st.tabs(["📦 Lihat Stok Pabrik", "🛒 Order Stok", "📋 Riwayat Order Saya"])
     with tab1:
@@ -418,7 +416,7 @@ elif role == "distributor":
             st.info("Belum ada pesanan.")
         else:
             st.dataframe(df_riwayat, use_container_width=True, hide_index=True)
-    st.markdown('</div>', unsafe_allow_html=True)
+    
 
 elif role == "klien":
     st.markdown('<div class="main-card">', unsafe_allow_html=True)
