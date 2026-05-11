@@ -6,7 +6,7 @@ import plotly.express as px
 import base64
 
 # ==================== 0. KONFIGURASI HALAMAN ====================
-st.set_page_config(page_title="5656567 - CV Amal Mulia", layout="wide", page_icon="🏭")
+st.set_page_config(page_title="MDMS - CV Amal Mulia", layout="wide", page_icon="🏭")
 
 # ==================== 1. CSS TAMBAHAN UNTUK CARD PUTIH ====================
 st.markdown("""
